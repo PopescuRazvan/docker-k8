@@ -31,3 +31,25 @@ docker run -p 3000:80 --name container_name image_name
 #push and pull on docker repo
 docker push razvan176/test-python-docker:tagname
 docker pull razvan176/test-python-docker
+
+#all volumes
+docker volume ls
+
+#volume docker name // -v feedback:/app/feedback this a docker volumes name //and keeps the volumes if the container is stop
+docker run -d -p 3000:80 --rm --name feedback-app  -v feedback:/app/feedback feedback-node:volumes
+
+#mount docker
+docker run -d -p 3000:80 --rm --name feedback-app  -v feedback:/app/feedback -v "D:/Learn Python/Docker and K8/example4/:/app"  feedback-node
+
+#mount docker shorcut -v "${PWD}:/app" 
+docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "${PWD}:/app" feedback-node
+docker run -it -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "${PWD}:/app" feedback-node sh
+
+#anonymous volume 
+docker run -v /app/data
+
+#named volume 
+docker run -v data:/app/data 
+
+#bind mount 
+docker run -v /path/to/code:/app/code
