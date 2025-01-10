@@ -53,3 +53,15 @@ docker run -v data:/app/data
 
 #bind mount 
 docker run -v /path/to/code:/app/code
+
+#crate volum 
+docker volume create feedback-files
+
+#env 
+docker run -d -p 3000:80 --rm --name feedback-app  feedback-node:env
+
+#env as a file 
+docker run -d --rm -p 3000:8000 --env-file ./.env --name feedback-app feedback-node:env
+
+#example of args
+docker build -t feedback:node:dev --build-arg DEFAULT_PORT=8000

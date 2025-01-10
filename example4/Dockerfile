@@ -8,7 +8,12 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+ARG DEFAULT_PORT = 80
+
+#environment variable for port
+ENV PORT $DEFAULT_PORT  
+
+EXPOSE $PORT
 
 #anonymous volume is save by docker but dont know it
 #VOLUME [ "/app/feedback" ]
