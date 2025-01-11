@@ -83,3 +83,13 @@ docker run --name test1 -d --network test-net --rm -p 3000:3000 example5
 
   //this works in containter with the name of the container because are having the same network
   //'mongodb://mongodb:27017/swfavorites',
+
+
+#docker compose 
+docker-compose up -d
+
+#docker compose down delete all container and images not the volumes u need -v for that
+docker-compose down -v
+
+#force to rebuild image
+docker-compose build
