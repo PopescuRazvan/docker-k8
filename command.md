@@ -93,3 +93,9 @@ docker-compose down -v
 
 #force to rebuild image
 docker-compose build
+
+#execute a comand insde of container 
+docker exec name_container npm init
+
+#docker-compose with remove /init is the continue comand for entrypoint
+docker-compose run --rm name_container init
