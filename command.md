@@ -65,3 +65,21 @@ docker run -d --rm -p 3000:8000 --env-file ./.env --name feedback-app feedback-n
 
 #example of args
 docker build -t feedback:node:dev --build-arg DEFAULT_PORT=8000
+
+#example of using connection with another app as mongo 
+  //this is how u connect to docker from container to container
+  // 'mongodb://172.17.0.2:27017/swfavorites',
+
+  //this is how u connect to docker from local to container
+  'mongodb://host.docker.internal:27017/swfavorites',
+
+  //this only works on local
+  //'mongodb://localhost:27017/swfavorites',
+
+#create a network and containter in the same network 
+docker network create test-net
+docker run -d --name mongodb --network test-net mongo
+docker run --name test1 -d --network test-net --rm -p 3000:3000 example5 
+
+  //this works in containter with the name of the container because are having the same network
+  //'mongodb://mongodb:27017/swfavorites',
